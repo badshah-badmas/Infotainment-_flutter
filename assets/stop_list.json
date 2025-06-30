@@ -1,0 +1,71 @@
+{
+  "route": "kzd-17A",
+  "name": "Palayam - Mavoor",
+  "stops": [
+    {
+      "id": "stop001",
+      "lat": 11.258763,
+      "lng": 75.78041,
+      "name": {
+        "en": "Palayam",
+        "ml": "പാലയം",
+        "hi": "पालायम"
+      },
+      "audio": "palayam.mp3",
+      "sequence": 1,
+      "description": "Palayam bus stand, near SM Street."
+    },
+    {
+      "id": "stop002",
+      "lat": 11.264231,
+      "lng": 75.795152,
+      "name": {
+        "en": "Medical College",
+        "ml": "മെഡിക്കൽ കോളേജ്",
+        "hi": "मेडिकल कॉलेज"
+      },
+      "audio": "medcollege.mp3",
+      "sequence": 2,
+      "description": "Near Kozhikode Medical College Hospital."
+    },
+    {
+      "id": "stop003",
+      "lat": 11.266664,
+      "lng": 75.802543,
+      "name": {
+        "en": "Chevayur",
+        "ml": "ചേവയൂർ",
+        "hi": "चेवयूर"
+      },
+      "audio": "chevayur.mp3",
+      "sequence": 3,
+      "description": "Chevayur junction."
+    },
+    {
+      "id": "stop004",
+      "lat": 11.26998,
+      "lng": 75.81068,
+      "name": {
+        "en": "Kunnamangalam",
+        "ml": "കുന്നമംഗലം",
+        "hi": "कुननामंगलम"
+      },
+      "audio": "kunnamangalam.mp3",
+      "sequence": 4,
+      "description": "Near National Institute of Technology Calicut."
+    },
+    {
+      "id": "stop005",
+      "lat": 11.275485,
+      "lng": 75.832728,
+      "name": {
+        "en": "Mavoor",
+        "ml": "മാവൂർ",
+        "hi": "मावूर"
+      },
+      "audio": "mavoor.mp3",
+      "sequence": 5,
+      "description": "Mavoor bus stand, final stop."
+    }
+  ]
+}
