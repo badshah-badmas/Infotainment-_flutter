@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:infotainment/src/bloc/route_info_bloc.dart';
 import 'package:infotainment/src/const/enums.dart';
 import 'package:infotainment/src/model/route_ui.dart';
+import 'package:infotainment/src/repo/bus_route_repo.dart';
 import 'package:infotainment/src/ui/widgets/stop_list_items.dart';
 
 import 'package:text_scroll/text_scroll.dart';
@@ -46,13 +47,7 @@ class _HomeScreenState extends State<HomeScreen> {
               ],
             ),
           ),
-          child: Column(
-            children: [
-              HeaderSection(),
-              BodySection(),
-              // Expanded(child: Container(color: Colors.amber)),
-            ],
-          ),
+          child: Column(children: [HeaderSection(), BodySection()]),
         ),
       ),
     );

@@ -4,3 +4,5 @@ part of 'route_info_bloc.dart';
 sealed class RouteInfoEvent {}
 
 class RouteInfoFetch extends RouteInfoEvent {}
+
+class RouteInfoUpdate extends RouteInfoEvent {}

@@ -26,31 +26,30 @@ class RoutesListWidget extends StatelessWidget {
           borderRadius: BorderRadius.circular(10),
           color: Theme.of(context).colorScheme.primaryContainer,
         ),
-        child:
-            BlocSelector<RouteInfoBloc, RouteInfoState, List<RouteStopModel>>(
-              selector: (state) {
-                return state.routeStops;
-              },
-              builder: (context, routes) {
-                return ListView.builder(
-                  itemCount: routes.length,
-                  itemBuilder: (context, index) {
-                    final position =
-                        index == 0
-                            ? StopItemPosition.first
-                            : index == routes.length - 1
-                            ? StopItemPosition.last
-                            : StopItemPosition.middle;
+        child: BlocSelector<RouteInfoBloc, RouteInfoState, List<BusStopUI>>(
+          selector: (state) {
+            return state.routeStops;
+          },
+          builder: (context, routes) {
+            return ListView.builder(
+              itemCount: routes.length,
+              itemBuilder: (context, index) {
+                final position =
+                    index == 0
+                        ? StopItemPosition.first
+                        : index == routes.length - 1
+                        ? StopItemPosition.last
+                        : StopItemPosition.middle;
 
-                    return StopListItemWidget(
-                      stage: routes[index].stage,
-                      stopName: routes[index].stopName,
-                      position: position,
-                    );
-                  },
+                return StopListItemWidget(
+                  stage: routes[index].stage,
+                  stopName: routes[index].stopName,
+                  position: position,
                 );
               },
-            ),
+            );
+          },
+        ),
       ),
     );
   }

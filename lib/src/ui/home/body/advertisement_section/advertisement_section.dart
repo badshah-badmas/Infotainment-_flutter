@@ -1,8 +1,14 @@
 part of '../../home.dart';
 
 class AdvertisementSection extends StatelessWidget {
-  const AdvertisementSection({super.key});
+  AdvertisementSection({super.key});
+  final YoutubePlayerController controller =
+      YoutubePlayerController.fromVideoId(
+        videoId: 'PXHjKTLd_W0',
+        autoPlay: true,
 
+        params: YoutubePlayerParams(),
+      );
   @override
   Widget build(BuildContext context) {
     return Expanded(
@@ -17,6 +23,7 @@ class AdvertisementSection extends StatelessWidget {
                 borderRadius: BorderRadius.circular(10),
                 color: Theme.of(context).colorScheme.primaryContainer,
               ),
+              // child: YoutubePlayer(controller: controller),
             ),
           ),
           Expanded(
@@ -28,7 +35,12 @@ class AdvertisementSection extends StatelessWidget {
                 color: Theme.of(context).colorScheme.primaryContainer,
               ),
               child: Center(
-                child: FilledButton(onPressed: () {}, child: Text('Click')),
+                child: FilledButton(
+                  onPressed: () {
+                    BusRouteRepo.initializeRoute();
+                  },
+                  child: Text('Click'),
+                ),
               ),
             ),
           ),

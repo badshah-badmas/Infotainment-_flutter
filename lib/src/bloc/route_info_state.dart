@@ -6,7 +6,7 @@ sealed class RouteInfoState extends Equatable {
   final String header;
   final String routeID;
   final String routeName;
-  final List<RouteStopModel> routeStops;
+  final List<BusStopUI> routeStops;
 
   const RouteInfoState({
     required this.headerTitle,
@@ -15,6 +15,16 @@ sealed class RouteInfoState extends Equatable {
     required this.routeName,
     required this.routeStops,
   });
+
+  RouteInfoState copyWith({
+    String? headerTitle,
+    String? header,
+    String? routeID,
+    String? routeName,
+    List<BusStopUI>? routeStops,
+  }) {
+    throw UnimplementedError();
+  }
 
   @override
   List<Object?> get props => [
@@ -34,6 +44,22 @@ final class RouteInfoInitial extends RouteInfoState {
     super.routeName = '',
     super.routeStops = const [],
   });
+  @override
+  RouteInfoState copyWith({
+    String? headerTitle,
+    String? header,
+    String? routeID,
+    String? routeName,
+    List<BusStopUI>? routeStops,
+  }) {
+    return RouteInfoSuccess(
+      headerTitle: headerTitle ?? this.headerTitle,
+      header: header ?? this.header,
+      routeID: routeID ?? this.routeID,
+      routeName: routeName ?? this.routeName,
+      routeStops: routeStops ?? this.routeStops,
+    );
+  }
 
   @override
   List<Object?> get props => [];
@@ -47,6 +73,23 @@ final class RouteInfoSuccess extends RouteInfoState {
     required super.routeName,
     required super.routeStops,
   });
+
+  @override
+  RouteInfoState copyWith({
+    String? headerTitle,
+    String? header,
+    String? routeID,
+    String? routeName,
+    List<BusStopUI>? routeStops,
+  }) {
+    return RouteInfoSuccess(
+      headerTitle: headerTitle ?? this.headerTitle,
+      header: header ?? this.header,
+      routeID: routeID ?? this.routeID,
+      routeName: routeName ?? this.routeName,
+      routeStops: routeStops ?? this.routeStops,
+    );
+  }
 
   @override
   List<Object?> get props => [
