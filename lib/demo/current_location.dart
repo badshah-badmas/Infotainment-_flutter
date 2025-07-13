@@ -4,12 +4,12 @@ class DemoLocation {
   static int index = 0;
 
   static List<Location> locations = [
-    Location(latitude: 11.441612844758785, longitude: 75.69555335662021),
-    Location(latitude: 11.442355598082418, longitude: 75.6970069112696),
-    Location(latitude: 11.442840372065062, longitude: 75.69756455898184),
-    Location(latitude: 11.441950842604228, longitude: 75.69873024228255),
-    Location(latitude: 11.441118436351944, longitude: 75.69966278891032),
-    Location(latitude: 11.440363556017036, longitude: 75.70058700922759),
+    // Location(latitude: 11.441612844758785, longitude: 75.69555335662021),
+    // Location(latitude: 11.442355598082418, longitude: 75.6970069112696),
+    // Location(latitude: 11.442840372065062, longitude: 75.69756455898184),
+    // Location(latitude: 11.441950842604228, longitude: 75.69873024228255),
+    // Location(latitude: 11.441118436351944, longitude: 75.69966278891032),
+    // Location(latitude: 11.440363556017036, longitude: 75.70058700922759),
     Location(latitude: 11.44046964742451, longitude: 75.70262695498828),
     Location(latitude: 11.440090166423822, longitude: 75.70624057318948),
     Location(latitude: 11.439838675288408, longitude: 75.71101015387124),

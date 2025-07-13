@@ -1,18 +1,18 @@
 import 'package:intl/intl.dart';
 
-class TimeTable {
+class TimeTableItem {
   final String? route, direction;
   final DateTime? start, end;
-  TimeTable({
+  TimeTableItem({
     required this.start,
     required this.end,
     required this.route,
     required this.direction,
   });
 
-  factory TimeTable.fromJson(Map<String, String> json) {
+  factory TimeTableItem.fromJson(Map<String, String> json) {
     final formate = DateFormat.Hm();
-    return TimeTable(
+    return TimeTableItem(
       start: formate.tryParse(json['start'] ?? ''),
       end: formate.tryParse(json['end'] ?? ''),
       route: json['route']?.toLowerCase(),
@@ -37,5 +37,15 @@ class TimeTable {
       minutes: start?.minute ?? 0,
     );
     return startTime - currentTime;
+  }
+
+  @override
+  String toString() {
+    return """TimeTableItem(
+      start: $start,
+      end: $end,
+      route: $route,
+      direction: $direction,
+    )""";
   }
 }

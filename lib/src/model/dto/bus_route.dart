@@ -1,6 +1,7 @@
 import 'package:equatable/equatable.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:infotainment/src/const/enums.dart';
-import 'package:infotainment/src/model/route_ui.dart';
+import 'package:infotainment/src/model/location.dart';
 import 'package:infotainment/src/model/ui/bus_route.dart';
 
 class BusRoute {
@@ -24,24 +25,19 @@ class BusRoute {
     );
   }
 
-  BusRouteUI toUI({required String direction, String language = 'en'}) {
-    final uiStops =
-        stops
-            .map(
-              (e) => BusStopUI(
-                stage: StopPositionStage.upcoming,
-                stopName: e.name.fromKey(language) ?? '',
-              ),
-            )
-            .toList();
-    return BusRouteUI(
+  BusRouteUI toUI({
+    required String direction,
+    required Location currentLocation,
+  }) {
+    return BusRouteUI.fromLocation(
       id: (routeID + direction).toUpperCase(),
-      name: routeName(direction),
-      stops: uiStops,
+      name: _routeName(direction),
+      stops: direction == 'a' ? stops : stops.reversed.toList(),
+      currentLocation: currentLocation,
     );
   }
 
-  String routeName(String direction) {
+  String _routeName(String direction) {
     if (direction == 'b') {
       return '$b-$a';
     }
@@ -56,14 +52,15 @@ class BusStop extends Equatable {
   final StopName name;
   final String? audio;
   final String? description;
-
-  const BusStop({
+  StopPositionStage stage;
+  BusStop({
     required this.id,
     required this.lat,
     required this.lng,
     required this.name,
     required this.audio,
     required this.description,
+    this.stage = StopPositionStage.upcoming,
   });
 
   factory BusStop.fromJson(Map<String, dynamic> json) {
@@ -77,8 +74,30 @@ class BusStop extends Equatable {
     );
   }
 
+  BusStop updateStage(StopPositionStage stage) {
+    this.stage = stage;
+    return BusStop(
+      stage: stage,
+      audio: audio,
+      description: description,
+      id: id,
+      lat: lat,
+      lng: lng,
+      name: name,
+    );
+  }
+
+  double getDistance(Location location) {
+    return Geolocator.distanceBetween(
+      lat,
+      lng,
+      location.latitude,
+      location.longitude,
+    );
+  }
+
   @override
-  List<Object?> get props => [id, lat, lng, name, audio, description];
+  List<Object?> get props => [id, lat, lng, name, audio, description, stage];
 }
 
 class StopName {

@@ -37,7 +37,7 @@ class AdvertisementSection extends StatelessWidget {
               child: Center(
                 child: FilledButton(
                   onPressed: () {
-                    BusRouteRepo.initializeRoute();
+                    // BusRouteRepo.initializeRoute();
                   },
                   child: Text('Click'),
                 ),

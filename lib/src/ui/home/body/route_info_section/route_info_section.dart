@@ -26,9 +26,9 @@ class RoutesListWidget extends StatelessWidget {
           borderRadius: BorderRadius.circular(10),
           color: Theme.of(context).colorScheme.primaryContainer,
         ),
-        child: BlocSelector<RouteInfoBloc, RouteInfoState, List<BusStopUI>>(
+        child: BlocSelector<RouteInfoBloc, RouteInfoState, List<BusStop>>(
           selector: (state) {
-            return state.routeStops;
+            return state.route?.stopsUiList ?? [];
           },
           builder: (context, routes) {
             return ListView.builder(
@@ -43,7 +43,7 @@ class RoutesListWidget extends StatelessWidget {
 
                 return StopListItemWidget(
                   stage: routes[index].stage,
-                  stopName: routes[index].stopName,
+                  stopName: routes[index].name.en,
                   position: position,
                 );
               },
