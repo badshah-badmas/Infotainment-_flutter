@@ -1,32 +1,55 @@
 part of 'route_info_bloc.dart';
 
-@immutable
-sealed class RouteInfoState extends Equatable {
+class RouteInfoState extends Equatable {
+  final BusRoute? route;
+  final String routeName;
+  final String routeId;
+  final TimeTableItem? timeTableItem;
+  final StopProgressState? stopProgressState;
   final String headerTitle;
   final String header;
-  final BusRouteUI? route;
-  // final String routeID;
-  // final String routeName;
-  // final List<BusStopUI> routeStops;
+  final String language;
 
   const RouteInfoState({
     required this.headerTitle,
     required this.header,
-    required this.route,
-    // required this.routeID,
-    // required this.routeName,
-    // required this.routeStops,
+    required this.routeName,
+    required this.routeId,
+    this.route,
+    this.stopProgressState,
+    this.language = 'en',
+    this.timeTableItem,
   });
+
+  factory RouteInfoState.initial() {
+    return RouteInfoState(
+      headerTitle: 'N/A',
+      header: 'N/A',
+      routeId: 'N/A',
+      routeName: 'N/A',
+    );
+  }
 
   RouteInfoState copyWith({
     String? headerTitle,
     String? header,
-    BusRouteUI? route,
-    // String? routeID,
-    // String? routeName,
-    // List<BusStopUI>? routeStops,
+    String? routeName,
+    String? routeId,
+    BusRoute? route,
+    TimeTableItem? timeTableItem,
+    StopProgressState? stopProgressState,
+    String? language,
   }) {
-    throw UnimplementedError();
+    return RouteInfoState(
+      routeName: routeName ?? this.routeName,
+      routeId: routeId ?? this.routeId,
+      headerTitle: headerTitle ?? this.headerTitle,
+      header: header ?? this.header,
+      route: route ?? this.route,
+      stopProgressState: stopProgressState ?? this.stopProgressState,
+      language: language ?? this.language,
+      timeTableItem: timeTableItem ?? this.timeTableItem,
+    );
   }
 
   @override
@@ -34,80 +57,8 @@ sealed class RouteInfoState extends Equatable {
     headerTitle,
     header,
     route,
-    // routeID,
-    // routeName,
-    // routeStops,
-  ];
-}
-
-final class RouteInfoInitial extends RouteInfoState {
-  const RouteInfoInitial({
-    super.headerTitle = '',
-    super.header = '',
-    super.route,
-    // super.routeID = '',
-    // super.routeName = '',
-    // super.routeStops = const [],
-  });
-  @override
-  RouteInfoState copyWith({
-    String? headerTitle,
-    String? header,
-    BusRouteUI? route,
-    // String? routeID,
-    // String? routeName,
-    // List<BusStopUI>? routeStops,
-  }) {
-    return RouteInfoSuccess(
-      headerTitle: headerTitle ?? this.headerTitle,
-      header: header ?? this.header,
-      route: route ?? this.route,
-      // routeID: routeID ?? this.routeID,
-      // routeName: routeName ?? this.routeName,
-      // routeStops: routeStops ?? this.routeStops,
-    );
-  }
-
-  @override
-  List<Object?> get props => [];
-}
-
-final class RouteInfoSuccess extends RouteInfoState {
-  const RouteInfoSuccess({
-    required super.headerTitle,
-    required super.header,
-    required super.route,
-    // required super.routeID,
-    // required super.routeName,
-    // required super.routeStops,
-  });
-
-  @override
-  RouteInfoState copyWith({
-    String? headerTitle,
-    String? header,
-    BusRouteUI? route,
-    // String? routeID,
-    // String? routeName,
-
-    // List<BusStopUI>? routeStops,
-  }) {
-    return RouteInfoSuccess(
-      headerTitle: headerTitle ?? this.headerTitle,
-      header: header ?? this.header,
-      route: route ?? this.route,
-      // routeID: routeID ?? this.routeID,
-      // routeName: routeName ?? this.routeName,
-      // routeStops: routeStops ?? this.routeStops,
-    );
-  }
-
-  @override
-  List<Object?> get props => [
-    headerTitle,
-    header,
-    // routeID,
-    // routeName,
-    // routeStops,
+    timeTableItem,
+    stopProgressState,
+    language,
   ];
 }

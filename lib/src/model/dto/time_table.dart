@@ -10,7 +10,7 @@ class TimeTableItem {
     required this.direction,
   });
 
-  factory TimeTableItem.fromJson(Map<String, String> json) {
+  factory TimeTableItem.fromJson(Map<String, dynamic> json) {
     final formate = DateFormat.Hm();
     return TimeTableItem(
       start: formate.tryParse(json['start'] ?? ''),

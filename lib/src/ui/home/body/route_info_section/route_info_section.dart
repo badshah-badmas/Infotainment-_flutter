@@ -26,25 +26,56 @@ class RoutesListWidget extends StatelessWidget {
           borderRadius: BorderRadius.circular(10),
           color: Theme.of(context).colorScheme.primaryContainer,
         ),
-        child: BlocSelector<RouteInfoBloc, RouteInfoState, List<BusStop>>(
+        child: BlocSelector<RouteInfoBloc, RouteInfoState, String>(
           selector: (state) {
-            return state.route?.stopsUiList ?? [];
+            return state.language;
           },
-          builder: (context, routes) {
-            return ListView.builder(
-              itemCount: routes.length,
-              itemBuilder: (context, index) {
-                final position =
-                    index == 0
-                        ? StopItemPosition.first
-                        : index == routes.length - 1
-                        ? StopItemPosition.last
-                        : StopItemPosition.middle;
+          builder: (context, language) {
+            return BlocSelector<
+              RouteInfoBloc,
+              RouteInfoState,
+              StopProgressState?
+            >(
+              selector: (state) {
+                return state.stopProgressState;
+              },
+              builder: (context, stopProgress) {
+                if (stopProgress == null) return SizedBox();
+                final visitedStops = stopProgress.visitedStops.toList();
+                final upcomingStops = stopProgress.upcomingStops.toList();
+                return CustomScrollView(
+                  slivers: [
+                    SliverList.builder(
+                      itemCount: visitedStops.length,
+                      itemBuilder: (context, index) {
+                        final stop = visitedStops[index];
+                        return StopListItemWidget(
+                          stage: StopPositionStage.passed,
+                          stopName: stop.getName(language),
+                          position: stop.position,
+                        );
+                      },
+                    ),
+                    SliverToBoxAdapter(
+                      child: StopListItemWidget(
+                        stage: stopProgress.stopInQuestion.stage,
+                        stopName: stopProgress.stopInQuestion.getName(language),
+                        position: stopProgress.stopInQuestion.position,
+                      ),
+                    ),
+                    SliverList.builder(
+                      itemCount: upcomingStops.length,
 
-                return StopListItemWidget(
-                  stage: routes[index].stage,
-                  stopName: routes[index].name.en,
-                  position: position,
+                      itemBuilder: (context, index) {
+                        final stop = upcomingStops[index];
+                        return StopListItemWidget(
+                          stage: StopPositionStage.upcoming,
+                          stopName: stop.getName(language),
+                          position: stop.position,
+                        );
+                      },
+                    ),
+                  ],
                 );
               },
             );
@@ -68,14 +99,24 @@ class RouteInfoHeader extends StatelessWidget {
       ),
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 10),
-        child: Column(
-          children: [
-            Text('KZD-17A', style: Theme.of(context).textTheme.titleLarge),
-            Text(
-              'Palayam-Mavoor',
-              style: Theme.of(context).textTheme.titleSmall,
-            ),
-          ],
+        child: BlocSelector<RouteInfoBloc, RouteInfoState, List<String>>(
+          selector: (state) {
+            return [state.routeId, state.routeName];
+          },
+          builder: (context, idAndName) {
+            return Column(
+              children: [
+                Text(
+                  idAndName.first,
+                  style: Theme.of(context).textTheme.titleLarge,
+                ),
+                Text(
+                  idAndName.last,
+                  style: Theme.of(context).textTheme.titleSmall,
+                ),
+              ],
+            );
+          },
         ),
       ),
     );
