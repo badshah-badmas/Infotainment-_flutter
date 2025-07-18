@@ -54,6 +54,8 @@ class RouteInfoState extends Equatable {
 
   @override
   List<Object?> get props => [
+    routeName,
+    routeId,
     headerTitle,
     header,
     route,

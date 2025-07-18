@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:infotainment/src/ui/home/home.dart';
 import 'package:infotainment/src/theme/theme.dart';
 
@@ -7,12 +8,15 @@ class App extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      themeMode: ThemeMode.light,
-      theme: theme,
-      darkTheme: darkTheme,
-      home: HomeScreen(),
+    return ScreenUtilInit(
+      // designSize: const Size(1920, 1080),
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        themeMode: ThemeMode.light,
+        theme: theme,
+        darkTheme: darkTheme,
+        home: HomeScreen(),
+      ),
     );
   }
 }

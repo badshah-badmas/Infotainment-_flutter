@@ -1,9 +1,10 @@
 import 'dart:developer';
 
+import 'package:equatable/equatable.dart';
 import 'package:infotainment/src/const/enums.dart';
 import 'package:infotainment/src/model/dto/bus_stop.dart';
 
-class BusRoute {
+class BusRoute extends Equatable {
   final String routeID;
   final String a, b;
   final List<BusStop> stops;
@@ -43,4 +44,8 @@ class BusRoute {
     }
     return '$a-$b';
   }
+
+  @override
+  // TODO: implement props
+  List<Object?> get props => [routeID, a, b, stops];
 }

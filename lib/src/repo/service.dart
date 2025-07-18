@@ -2,6 +2,7 @@ import 'dart:collection';
 import 'dart:convert';
 import 'dart:developer';
 
+import 'package:equatable/equatable.dart';
 import 'package:flutter/services.dart';
 import 'package:infotainment/src/config/config.dart';
 import 'package:infotainment/src/const/enums.dart';
@@ -9,17 +10,21 @@ import 'package:infotainment/src/model/dto/bus_route.dart';
 import 'package:infotainment/src/model/dto/bus_stop.dart';
 import 'package:infotainment/src/model/dto/time_table.dart';
 import 'package:infotainment/src/model/location.dart';
+import 'package:infotainment/src/service/audio_service.dart';
 
-class StopProgressState {
+class StopProgressState extends Equatable {
   final Queue<BusStop> visitedStops;
   final Queue<BusStop> upcomingStops;
   final BusStop stopInQuestion;
 
-  StopProgressState({
+  const StopProgressState({
     required this.visitedStops,
     required this.upcomingStops,
     required this.stopInQuestion,
   });
+
+  @override
+  List<Object?> get props => [visitedStops, upcomingStops, stopInQuestion];
 }
 
 Future<Map<String, BusRoute>> getRoutes() async {
@@ -68,6 +73,7 @@ StopProgressState? initializeRouteState({
   required List<BusStop> stops,
   required Location currentLocation,
 }) {
+  log('stop : ${stops.length}');
   if (stops.length < 2) return null;
   double minDistance = double.infinity;
   int? currentStopIndex;
@@ -130,6 +136,9 @@ StopProgressState updateLocation({
   if (stopInQuestion.getDistance(currentLocation) <=
       AppConfig.currentStopDistance) {
     stopInQuestion = stopInQuestion.updateStage(StopPositionStage.atStop);
+  } else if (stopInQuestion.getDistance(currentLocation) <=
+      AppConfig.nextStopDistance) {
+    AudioService.instance.announce(stopInQuestion);
   }
   return StopProgressState(
     visitedStops: visitedStops,

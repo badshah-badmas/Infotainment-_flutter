@@ -25,10 +25,10 @@ class PositionIndicatorWidget extends StatelessWidget {
     }
     return Center(
       child: Container(
-        height: 15,
+        height: 8.sp,
         decoration: BoxDecoration(
           color: color,
-          border: Border.all(width: 2, color: borderColor),
+          border: Border.all(width: 1.sp, color: borderColor),
           shape: BoxShape.circle,
         ),
       ),

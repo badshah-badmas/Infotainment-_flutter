@@ -5,8 +5,9 @@ class HeaderSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final colorScheme = ColorScheme.of(context);
     return ColoredBox(
-      color: Theme.of(context).colorScheme.surfaceDim,
+      color: colorScheme.surfaceDim,
       child: Row(
         children: [
           Expanded(
@@ -16,9 +17,17 @@ class HeaderSection extends StatelessWidget {
                   return state.headerTitle;
                 },
                 builder: (context, headerTitle) {
-                  return Text(
+                  return TextScroll(
                     headerTitle,
-                    style: Theme.of(context).textTheme.headlineMedium,
+                    intervalSpaces: 1.sp.toInt(),
+                    pauseBetween: Duration(seconds: 2),
+                    delayBefore: Duration(seconds: 2),
+                    velocity: Velocity(pixelsPerSecond: Offset(40, 0)),
+                    style: TextStyle(
+                      fontSize: 20.sp,
+                      color: colorScheme.onPrimary,
+                      fontWeight: FontWeight.w400,
+                    ),
                   );
                 },
               ),
@@ -34,7 +43,7 @@ class HeaderSection extends StatelessWidget {
                   borderRadius: BorderRadius.horizontal(
                     left: Radius.circular(10),
                   ),
-                  color: Theme.of(context).colorScheme.primaryContainer,
+                  color: colorScheme.primaryContainer,
                 ),
                 child: Align(
                   alignment: Alignment.centerLeft,
@@ -45,7 +54,16 @@ class HeaderSection extends StatelessWidget {
                     builder: (context, header) {
                       return TextScroll(
                         header,
-                        style: Theme.of(context).textTheme.headlineLarge,
+                        intervalSpaces: 1.sp.toInt(),
+                        
+                        pauseBetween: Duration(seconds: 2),
+                        delayBefore: Duration(seconds: 2),
+                        velocity: Velocity(pixelsPerSecond: Offset(40, 0)),
+                        style: TextStyle(
+                          fontSize: 20.sp,
+                          fontWeight: FontWeight.bold,
+                          letterSpacing: 0.sp,
+                        ),
                       );
                     },
                   ),

@@ -69,59 +69,459 @@
     "stops": [
       {
         "id": "1",
-        "lat": 11.44124487572325,
-        "lng": 75.69566708583649,
+        "lat": 11.260794663361288,
+        "lng": 75.95438074931671,
         "name": {
-          "en": "Koyilandy bus stand",
-          "ml": "കോയിലാണ്ടി ബസ് സ്റ്റാൻഡ്",
-          "hi": "कोयिलांडी बस स्टैंड"
+          "en": "Mavoor Stand",
+          "ml": "മാവൂർ സ്റ്റാൻഡ്",
+          "hi": "मावूर स्टैंड"
         },
-        "audio": "palayam.mp3",
-        "description": "Koyilandy bus stand, near SM Street."
+        "audio": "mavoor_stand.mp3",
+        "description": "Mavoor bus Stand."
       },
       {
         "id": "2",
-        "lat": 11.440301757336641,
-        "lng": 75.70455006106745,
-        "name": { "en": "Komathukara", "ml": "കൊമത്തുകര", "hi": "कोमथुकारा" },
-        "audio": "medcollege.mp3",
-        "description": "Near Kozhikode Medical College Hospital."
-      },
-      {
-        "id": "3",
-        "lat": 11.43982402385905,
-        "lng": 75.71089037482898,
-        "name": { "en": "Aquaduct stop", "ml": "ചെവായൂർ", "hi": "चेवायूर" },
-        "audio": "chevayur.mp3",
-        "description": "Chevayur junction."
+        "lat": 11.260862163995924,
+        "lng": 75.95179806574663,
+        "name": {
+          "en": "Police Station",
+          "ml": "പോലീസ് സ്റ്റേഷൻ",
+          "hi": "पुलिस स्टेशन"
+        },
+        "audio": "police_station.mp3",
+        "description": "Police Station bus stop."
       },
       {
         "id": "4",
-        "lat": 11.443197544353838,
-        "lng": 75.71817595326308,
+        "lat": 11.25958501343016,
+        "lng": 75.94849193406615,
         "name": {
-          "en": "Mavinchuvadu",
-          "ml": "മാവിഞ്ചുവാട്",
-          "hi": "माविनचुवाडु"
+          "en": "Diamond",
+          "ml": "ഡയമണ്ട്",
+          "hi": "डायमंड"
         },
-        "audio": "kunnamangalam.mp3",
-        "description": "Near National Institute of Technology Calicut."
+        "audio": "diamond_stop.mp3",
+        "description": "Diamond bus stop."
       },
       {
         "id": "5",
-        "lat": 11.444546705819803,
-        "lng": 75.72762894632992,
-        "name": { "en": "Kanayamkodu", "ml": "കനയംകോട്", "hi": "कनयमकोडु" },
-        "audio": "mavoor.mp3",
-        "description": "Kanayamkodu bus stop."
+        "lat": 11.256778976281687,
+        "lng": 75.9456395402751,
+        "name": {
+          "en": "Parammal",
+          "ml": "പാറമ്മൽ",
+          "hi": "पारम्मल"
+        },
+        "audio": "parammal.mp3",
+        "description": "Parammal bus stop."
       },
       {
         "id": "6",
-        "lat": 11.446667295162689,
-        "lng": 75.74053286951084,
-        "name": { "en": "Ollur stop", "ml": "ഒള്ളൂർ", "hi": "ओल्लूर" },
-        "audio": "mavoor.mp3",
-        "description": "Ollur bus stop, final stop."
+        "lat": 11.255149636847491,
+        "lng": 75.94082119922017,
+        "name": {
+          "en": "Kalppally",
+          "ml": "കൽപ്പള്ളി",
+          "hi": "कलप्पल्ली"
+        },
+        "audio": "kalppally.mp3",
+        "description": "Kalppally bus stop."
+      },
+      {
+        "id": "7",
+        "lat": 11.25717705492582,
+        "lng": 75.9393850238811,
+        "name": {
+          "en": "Valav(Kolakkott)",
+          "ml": "വളവ് (കോളക്കോട്ട്)",
+          "hi": "वलव(कोलक्कोट्ट)"
+        },
+        "audio": "valav_kolakkott.mp3",
+        "description": "Valav (Kolakkott) bus stop."
+      },
+      {
+        "id": "8",
+        "lat": 11.261604840216652,
+        "lng": 75.93201877817133,
+        "name": {
+          "en": "Thengilakkadavu",
+          "ml": "തെങ്ങിലക്കടവ്",
+          "hi": "तेनगिलककटव"
+        },
+        "audio": "thengilakkadavu.mp3",
+        "description": "Thengilakkadavu bus stop."
+      },
+      {
+        "id": "9",
+        "lat": 11.262520275414893,
+        "lng": 75.9245515082846,
+        "name": {
+          "en": "Cheruppa",
+          "ml": "ചെറൂപ്പ",
+          "hi": "चेरूप्पा"
+        },
+        "audio": "cheruppa.mp3",
+        "description": "Cheruppa bus stop."
+      },
+      {
+        "id": "10",
+        "lat": 11.262741326536645,
+        "lng": 75.91962440330182,
+        "name": {
+          "en": "Cheruppa Bank",
+          "ml": "ചെറൂപ്പ ബാങ്ക്",
+          "hi": "चेरूप्पा बैंक"
+        },
+        "audio": "cheruppa_bank.mp3",
+        "description": "Cheruppa Bank bus stop,Reegistrar office."
+      },
+      {
+        "id": "11",
+        "lat": 11.261899547810103,
+        "lng": 75.91520412283671,
+        "name": {
+          "en": "Ayyappankavu",
+          "ml": "അയ്യപ്പൻകാവ്",
+          "hi": "अय्यप्पनकावु"
+        },
+        "audio": "ayyappankavu.mp3",
+        "description": "Ayyappankavu bus stop."
+      },
+      {
+        "id": "12",
+        "lat": 11.261360382022067,
+        "lng": 75.91334310435204,
+        "name": {
+          "en": "Janatha",
+          "ml": "ജനതാ",
+          "hi": "जनता"
+        },
+        "audio": "janatha.mp3",
+        "description": "Janatha bus stop."
+      },
+      {
+        "id": "13",
+        "lat": 11.262205999478612,
+        "lng": 75.9059493825253,
+        "name": {
+          "en": "Peruvayal",
+          "ml": "പെരുവയൽ",
+          "hi": "पेरुवयल"
+        },
+        "audio": "peruvayal.mp3",
+        "description": "Peruvayal bus stop."
+      },
+      {
+        "id": "14",
+        "lat": 11.263175545060863,
+        "lng": 75.89743822881252,
+        "name": {
+          "en": "Kallery",
+          "ml": "കല്ലേരി",
+          "hi": "कल्लेरी"
+        },
+        "audio": "kallery.mp3",
+        "description": "Kallery bus stop."
+      },
+      {
+        "id": "15",
+        "lat": 11.263988686924806,
+        "lng": 75.89437123721592,
+        "name": {
+          "en": "Cinema Hall",
+          "ml": "സിനിമ ഹാൾ",
+          "hi": "सिनेमा हॉल"
+        },
+        "audio": "cinema_hall.mp3",
+        "description": "Cinema Hall (second) bus stop."
+      },
+      {
+        "id": "16",
+        "lat": 11.264364941862762,
+        "lng": 75.89030484487857,
+        "name": {
+          "en": "Poovattuparamba",
+          "ml": "പൂവാട്ടുപറമ്പ്",
+          "hi": "पूवट्टुपरम्बा"
+        },
+        "audio": "poovattuparamba.mp3",
+        "description": "Poovattuparamba bus stop."
+      },
+      {
+        "id": "17",
+        "lat": 11.265343501026857,
+        "lng": 75.88614742086297,
+        "name": {
+          "en": "Parayil (Care Land)",
+          "ml": "പാറയിൽ (കെയർ ലാൻഡ്)",
+          "hi": "पारयिल (केयर लैंड)"
+        },
+        "audio": "parayil_careland.mp3",
+        "description": "Parayil (Care Land) bus stop."
+      },
+      {
+        "id": "18",
+        "lat": 11.267168283694724,
+        "lng": 75.88313149707633,
+        "name": {
+          "en": "Hump (Minar)",
+          "ml": "ഹമ്പ് (മിനാർ)",
+          "hi": "हम्प (मिनार)"
+        },
+        "audio": "hump_minar.mp3",
+        "description": "Hump (Minar) bus stop."
+      },
+      {
+        "id": "19",
+        "lat": 11.268617986304829,
+        "lng": 75.8793303021366,
+        "name": {
+          "en": "Anakuzhikkara",
+          "ml": "ആനക്കുഴിക്കര",
+          "hi": "अनाकुझिकारा"
+        },
+        "audio": "anakkuzhikkara.mp3",
+        "description": "Anakuzhikkara bus stop."
+      },
+      {
+        "id": "20",
+        "lat": 11.267965985807727,
+        "lng": 75.87453803808997,
+        "name": {
+          "en": "Kuttikkattur 1st",
+          "ml": "കുറ്റിക്കാട്ടൂർ 1st",
+          "hi": "कुट्टिककाट्टूर 1st"
+        },
+        "audio": "kuttikkattur_1st.mp3",
+        "description": "Kuttikkattur 1st bus stop."
+      },
+      {
+        "id": "21",
+        "lat": 11.267541871138057,
+        "lng": 75.8705358588593,
+        "name": {
+          "en": "Kuttikkattur 2nd",
+          "ml": "കുറ്റിക്കാട്ടൂർ 2nd",
+          "hi": "कुट्टिककाट्टूर 2nd"
+        },
+        "audio": "kuttukkattur_2nd.mp3",
+        "description": "Kuttikkattur 2nd bus stop."
+      },
+      {
+        "id": "22",
+        "lat": 11.26791106016618,
+        "lng": 75.86706901831252,
+        "name": {
+          "en": "Service Station",
+          "ml": "സർവീസ് സ്റ്റേഷൻ",
+          "hi": "सर्विस स्टेशन"
+        },
+        "audio": "service.mp3",
+        "description": "Service Station bus stop."
+      },
+      {
+        "id": "23",
+        "lat": 11.268522251361112,
+        "lng": 75.86287407569222,
+        "name": {
+          "en": "6/2",
+          "ml": "ആറെ രണ്ട്",
+          "hi": "6/2"
+        },
+        "audio": "6/2.mp3",
+        "description": "6/2 bus stop."
+      },
+      {
+        "id": "24",
+        "lat": 11.269318076636557,
+        "lng": 75.85812614917081,
+        "name": {
+          "en": "6th Mile",
+          "ml": "6th മൈല്",
+          "hi": "6th माइल"
+        },
+        "audio": "6thmile.mp3",
+        "description": "6th Mile bus stop."
+      },
+      {
+        "id": "25",
+        "lat": 11.270544464882645,
+        "lng": 75.84893542974751,
+        "name": {
+          "en": "Velliparamba",
+          "ml": "വെള്ളിപ്പറമ്പ്",
+          "hi": "वेल्लीपरम्बा"
+        },
+        "audio": "velliparamba.mp3",
+        "description": "Velliparamba bus stop."
+      },
+      {
+        "id": "26",
+        "lat": 11.269817512791443,
+        "lng": 75.84309297111248,
+        "name": {
+          "en": "Rahmaniyya Up",
+          "ml": "റഹ്മാനിയ്യ മുകളിൽ",
+          "hi": "रहमानिय्या अप"
+        },
+        "audio": "rahmaniyya_up.mp3",
+        "description": "Rahmaniyya Up bus stop."
+      },
+      {
+        "id": "27",
+        "lat": 11.269475666789292,
+        "lng": 75.840575502581,
+        "name": {
+          "en": "Rahmaniyya",
+          "ml": "റഹ്മാനിയ്യ",
+          "hi": "रहमानिय्या"
+        },
+        "audio": "rahmaniyya.mp3",
+        "description": "Rahmaniyya bus stop."
+      },
+      {
+        "id": "28",
+        "lat": 11.271094513982609,
+        "lng": 75.83733464691117,
+        "name": {
+          "en": "Medical College",
+          "ml": "മെഡിക്കൽ കോളേജ്",
+          "hi": "मेडिकल कॉलेज"
+        },
+        "audio": "medicalcollege.mp3",
+        "description": "Medical College bus stop."
+      },
+      {
+        "id": "29",
+        "lat": 11.2704835047975,
+        "lng": 75.83081532181923,
+        "name": {
+          "en": "Kovoor",
+          "ml": "കോവൂർ",
+          "hi": "कोवूर"
+        },
+        "audio": "kovoor.mp3",
+        "description": "Kovoor bus stop."
+      },
+      {
+        "id": "30",
+        "lat": 11.269680337222209,
+        "lng": 75.82553761524791,
+        "name": {
+          "en": "Chevayur",
+          "ml": "ചേവായൂർ",
+          "hi": "चेवायूर"
+        },
+        "audio": "chevayur.mp3",
+        "description": "Chevayur bus stop."
+      },
+      {
+        "id": "31",
+        "lat": 11.266287732004342,
+        "lng": 75.81637132375671,
+        "name": {
+          "en": "Kavu",
+          "ml": "കാവ്",
+          "hi": "कावु"
+        },
+        "audio": "kavu.mp3",
+        "description": "Kavu bus stop."
+      },
+      {
+        "id": "32",
+        "lat": 11.263458826047614,
+        "lng": 75.81008888912845,
+        "name": {
+          "en": "Thondayadu",
+          "ml": "തൊണ്ടയാട്",
+          "hi": "तोनडयाडु"
+        },
+        "audio": "thondayadu.mp3",
+        "description": "Thondayadu bus stop."
+      },
+      {
+        "id": "33",
+        "lat": 11.26068164605276,
+        "lng": 75.8083665006486,
+        "name": {
+          "en": "Pottammal",
+          "ml": "പൊറ്റമ്മൽ",
+          "hi": "पोट्टम्मल"
+        },
+        "audio": "pottammal.mp3",
+        "description": "Pottammal bus stop."
+      },
+      {
+        "id": "34",
+        "lat": 11.2583004548965,
+        "lng": 75.80157099418153,
+        "name": {
+          "en": "Kottooli",
+          "ml": " കോട്ടൂളി",
+          "hi": "कोटहुली"
+        },
+        "audio": "kottooli.mp3",
+        "description": "kottooli bus stop."
+      },
+      {
+        "id": "35",
+        "lat": 11.258450335517518,
+        "lng": 75.79512267794874,
+        "name": {
+          "en": "Arayidathupalam (Baby)",
+          "ml": "അരയിടത്തുപാലം (ബേബി)",
+          "hi": "अरयिदत्तुपलम (बेबी)"
+        },
+        "audio": "arayidathupalam.mp3",
+        "description": "Arayidathupalam (Baby) bus stop."
+      },
+      {
+        "id": "36",
+        "lat": 11.258125130540222,
+        "lng": 75.78658060704795,
+        "name": {
+          "en": "New Bus Stand",
+          "ml": "പുതിയ ബസ് സ്റ്റാൻഡ്",
+          "hi": "नया बस स्टैंड"
+        },
+        "audio": "newbusstand.mp3",
+        "description": "New Bus Stand bus stop."
+      },
+      {
+        "id": "37",
+        "lat": 11.254726272614539,
+        "lng": 75.78321867906294,
+        "name": {
+          "en": "Commissioner Office",
+          "ml": "കമ്മീഷണർ ഓഫീസി",
+          "hi": "कमिश्नर कार्यालय"
+        },
+        "audio": "commissioner_office.mp3",
+        "description": "Commissioner Office bus stop."
+      },
+      {
+        "id": "38",
+        "lat": 11.25284275184845,
+        "lng": 75.7832896643734,
+        "name": {
+          "en": "Muthalakkulam",
+          "ml": "മുതലക്കുളം",
+          "hi": "मुथलक्कुलम"
+        },
+        "audio": "muthalakkulam.mp3",
+        "description": "Muthalakkulam bus stop."
+      },
+      {
+        "id": "39",
+        "lat": 11.249207086399696,
+        "lng": 75.78422837208568,
+        "name": {
+          "en": "Palayam",
+          "ml": "പാളയം",
+          "hi": "पालयम"
+        },
+        "audio": "palayam.mp3",
+        "description": "Palayam bus stop."
       }
     ]
   }

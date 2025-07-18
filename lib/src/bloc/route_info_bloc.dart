@@ -4,11 +4,12 @@ import 'dart:developer';
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/foundation.dart';
-import 'package:flutter/services.dart';
 import 'package:infotainment/demo/current_location.dart';
+import 'package:infotainment/src/const/enums.dart';
 import 'package:infotainment/src/model/dto/bus_route.dart';
 import 'package:infotainment/src/model/dto/time_table.dart';
 import 'package:infotainment/src/repo/service.dart';
+import 'package:intl/intl.dart';
 import 'package:meta/meta.dart';
 
 part 'route_info_event.dart';
@@ -17,7 +18,10 @@ part 'route_info_state.dart';
 class RouteInfoBloc extends Bloc<RouteInfoEvent, RouteInfoState> {
   RouteInfoBloc() : super(RouteInfoState.initial()) {
     on<RouteInfoFetch>((event, emit) async {
+      final DateFormat format = DateFormat.Hm();
       final time = DateTime.now();
+      format.tryParse('12:35');
+      // final time = DateTime.now();
       final timeTable = await getTimeTable();
       final route = await getRoutes();
       final timeTableItem = await getTimeTableOnTime(
@@ -35,6 +39,9 @@ class RouteInfoBloc extends Bloc<RouteInfoEvent, RouteInfoState> {
       final routeName = currentRoute?.routeNameByDirection(
         timeTableItem?.direction ?? '',
       );
+      log('direction: ${timeTableItem}');
+      log('progress up ${stopProgress?.upcomingStops.length ?? 0}');
+      log('progress pass ${stopProgress?.visitedStops.length ?? 0}');
       final routeId = currentRoute?.routeIdByDirection(
         timeTableItem?.direction ?? '',
       );
@@ -47,7 +54,13 @@ class RouteInfoBloc extends Bloc<RouteInfoEvent, RouteInfoState> {
           stopProgressState: stopProgress,
           timeTableItem: timeTableItem,
           header: stopProgress?.stopInQuestion.name['en'],
-          // headerTitle: stopProgress.stopInQuestion.stage,
+          headerTitle:
+              stopProgress == null
+                  ? null
+                  : stopProgress.stopInQuestion.stage ==
+                      StopPositionStage.atStop
+                  ? 'Now'
+                  : 'Next',
         ),
       );
 
@@ -69,6 +82,10 @@ class RouteInfoBloc extends Bloc<RouteInfoEvent, RouteInfoState> {
           state.copyWith(
             stopProgressState: stopProgress,
             header: stopProgress.stopInQuestion.name['en'],
+            headerTitle:
+                stopProgress.stopInQuestion.stage == StopPositionStage.atStop
+                    ? 'Now'
+                    : 'Next',
           ),
         );
       }

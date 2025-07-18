@@ -1,10 +1,10 @@
-import 'dart:developer';
-
+import 'package:equatable/equatable.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:infotainment/src/const/enums.dart';
 import 'package:infotainment/src/model/location.dart';
 
-class BusStop {
+// ignore: must_be_immutable
+class BusStop extends Equatable {
   final String id;
   final Location location;
   final Map<String, String> name;
@@ -76,4 +76,16 @@ class BusStop {
       stage: $stage,
     )""";
   }
+
+  @override
+  // TODO: implement props
+  List<Object?> get props => [
+    id,
+    location,
+    name,
+    audio,
+    description,
+    position,
+    stage,
+  ];
 }

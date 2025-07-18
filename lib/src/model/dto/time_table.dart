@@ -1,6 +1,7 @@
+import 'package:equatable/equatable.dart';
 import 'package:intl/intl.dart';
 
-class TimeTableItem {
+class TimeTableItem extends Equatable {
   final String? route, direction;
   final DateTime? start, end;
   TimeTableItem({
@@ -48,4 +49,7 @@ class TimeTableItem {
       direction: $direction,
     )""";
   }
+
+  @override
+  List<Object?> get props => [route, direction, start, end];
 }
