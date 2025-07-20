@@ -40,13 +40,9 @@ dependencies:
   meta: ^1.16.0
   text_scroll: ^0.2.0
   flutter_screenutil: ^5.9.3
-  video_player: ^2.10.0
-  fvp: ^0.33.0
-  # media_kit: ^1.2.0
-  # media_kit_video: ^1.2.5 # For video rendering.
-  # media_kit_libs_video: ^1.0.5 # Native video dependencies.
-  # youtube_player_iframe: ^5.2.1
-  audioplayers: ^6.5.0
+  flutterpi_gstreamer_video_player: ^0.1.1+1
+  audioplayers: ^5.0.0
+  dart_periphery: ^0.9.18
 
 dev_dependencies:
   flutter_lints: ^5.0.0
@@ -66,7 +62,7 @@ flutter:
     - assets/lottie/
     - assets/json/
     - assets/audio/
-    - assets/audio/kozhikode.mp3
+    - assets/images/
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images
   # For details regarding adding assets from package dependencies, see
@@ -76,6 +72,12 @@ flutter:
   # "family" key with the font family name, and a "fonts" key with a
   # list giving the asset and other descriptors for the font. For
   # example:
+
+  fonts:
+    - family: NotoSans
+      fonts:
+        - asset: assets/fonts/nato.ttf
+
   # fonts:
   #   - family: Schyler
   #     fonts:

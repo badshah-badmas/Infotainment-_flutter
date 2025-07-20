@@ -89,14 +89,21 @@ StopProgressState? initializeRouteState({
     }
   }
 
-  if (currentStop == null ||
-      currentStopIndex == null ||
-      minDistance > AppConfig.maxDistanceBetweenStops) {
+  /// TODO: to be changed
+  // if (currentStop == null ||
+  //     currentStopIndex == null ||
+  //     minDistance > AppConfig.maxDistanceBetweenStops) {
+  //   return null;
+  // } else if (minDistance > AppConfig.currentStopDistance &&
+  //     currentStopIndex == 0) {
+  //   currentStopIndex++;
+  //   currentStop = stops[currentStopIndex];
+  // }
+
+  if (minDistance > AppConfig.currentStopDistance ||
+      currentStop == null ||
+      currentStopIndex == null) {
     return null;
-  } else if (minDistance > AppConfig.currentStopDistance &&
-      currentStopIndex == 0) {
-    currentStopIndex++;
-    currentStop = stops[currentStopIndex];
   }
 
   final Queue<BusStop> visitedStops = Queue.from(
@@ -107,6 +114,8 @@ StopProgressState? initializeRouteState({
   final Queue<BusStop> upcomingStops = Queue.from(
     stops.sublist(currentStopIndex + 1),
   );
+
+  if (upcomingStops.isEmpty || visitedStops.isEmpty) return null;
 
   return StopProgressState(
     visitedStops: visitedStops,

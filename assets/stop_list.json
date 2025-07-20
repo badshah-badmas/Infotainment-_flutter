@@ -10,7 +10,7 @@
       "lng": 75.69566708583649,
       "name": {
         "en": "Koyilandy bus stand",
-        "ml": "കോയിലാണ്ടി ബസ് സ്റ്റാൻഡ്",
+        "ml": "j ബസ് സ്റ്റാൻഡ്",
         "hi": "कोयिलांडी बस स्टैंड"
       },
       "audio": "palayam.mp3",
@@ -22,13 +22,13 @@
       "lat": 11.440301757336641,
       "lng": 75.70455006106745,
       "name": {
-        "en": "Komathukara",
+        "en": "",
         "ml": "കൊമത്തുകര",
         "hi": "कोमथुकारा"
       },
       "audio": "medcollege.mp3",
       "sequence": 2,
-      "description": "Near Kozhikode Medical College Hospital."
+      "description": "near kozhikkode medical college"
     },
     {
       "id": "stop003",
@@ -36,7 +36,7 @@
       "lng": 75.71089037482898,
       "name": {
         "en": "Aquaduct stop",
-        "ml": "ചെവായൂർ",
+        "ml": "ചെവായൂhർ",
         "hi": "चेवायूर"
       },
       "audio": "chevayur.mp3",

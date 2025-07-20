@@ -64,8 +64,8 @@
   },
   "kzd-16": {
     "route": "KZD-16",
-    "a": "Kozhikode",
-    "b": "Mavoor",
+    "a": "Mavoor",
+    "b": "Kozhikode",
     "stops": [
       {
         "id": "1",

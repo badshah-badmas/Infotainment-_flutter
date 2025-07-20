@@ -8,42 +8,42 @@
   {
     "start": "11:15",
     "end": "12:15",
-    "route": "KZD-17",
+    "route": "KZD-16",
     "direction": "a"
   },
   {
     "start": "12:30",
     "end": "13:30",
-    "route": "KZD-17",
+    "route": "KZD-16",
     "direction": "b"
   },
   {
     "start": "14:05",
     "end": "15:05",
-    "route": "KZD-17",
+    "route": "KZD-16",
     "direction": "a"
   },
   {
     "start": "15:20",
     "end": "16:20",
-    "route": "KZD-17",
+    "route": "KZD-16",
     "direction": "b"
   },
   {
     "start": "16:50",
     "end": "17:50",
-    "route": "KZD-17",
+    "route": "KZD-16",
     "direction": "a"
   },
   {
     "start": "17:57",
     "end": "19:00",
-    "route": "KZD-17",
+    "route": "KZD-16",
     "direction": "b"
   },
   {
     "start": "19:05",
-    "end": "20:00",
+    "end": "23:59",
     "route": "KZD-16",
     "direction": "b"
   }

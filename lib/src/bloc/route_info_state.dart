@@ -1,6 +1,7 @@
 part of 'route_info_bloc.dart';
 
 class RouteInfoState extends Equatable {
+  final Location? location;
   final BusRoute? route;
   final String routeName;
   final String routeId;
@@ -9,12 +10,15 @@ class RouteInfoState extends Equatable {
   final String headerTitle;
   final String header;
   final String language;
+  final int index;
 
   const RouteInfoState({
+    required this.location,
     required this.headerTitle,
     required this.header,
     required this.routeName,
     required this.routeId,
+    required this.index,
     this.route,
     this.stopProgressState,
     this.language = 'en',
@@ -23,14 +27,17 @@ class RouteInfoState extends Equatable {
 
   factory RouteInfoState.initial() {
     return RouteInfoState(
+      location: null,
       headerTitle: 'N/A',
       header: 'N/A',
       routeId: 'N/A',
       routeName: 'N/A',
+      index: 0,
     );
   }
 
   RouteInfoState copyWith({
+    Location? location,
     String? headerTitle,
     String? header,
     String? routeName,
@@ -39,8 +46,11 @@ class RouteInfoState extends Equatable {
     TimeTableItem? timeTableItem,
     StopProgressState? stopProgressState,
     String? language,
+    int? index,
   }) {
     return RouteInfoState(
+      index: index ?? this.index,
+      location: location,
       routeName: routeName ?? this.routeName,
       routeId: routeId ?? this.routeId,
       headerTitle: headerTitle ?? this.headerTitle,
@@ -62,5 +72,7 @@ class RouteInfoState extends Equatable {
     timeTableItem,
     stopProgressState,
     language,
+    location,
+    index,
   ];
 }
