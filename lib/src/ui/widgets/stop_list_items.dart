@@ -24,6 +24,7 @@ class StopListItemWidget extends StatelessWidget {
       child: Row(
         children: [
           AspectRatio(
+            key: ValueKey(position),
             aspectRatio: 1,
             child: Stack(
               children: [
@@ -34,7 +35,9 @@ class StopListItemWidget extends StatelessWidget {
               ],
             ),
           ),
-          Expanded(child: _TextPart(stopName: stopName)),
+          Expanded(
+            child: _TextPart(key: ValueKey(stopName), stopName: stopName),
+          ),
         ],
       ),
     );
@@ -42,7 +45,7 @@ class StopListItemWidget extends StatelessWidget {
 }
 
 class _TextPart extends StatelessWidget {
-  const _TextPart({required this.stopName});
+  const _TextPart({super.key, required this.stopName});
 
   final String stopName;
 

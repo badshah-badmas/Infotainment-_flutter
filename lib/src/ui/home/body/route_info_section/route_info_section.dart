@@ -22,94 +22,63 @@ class RoutesListWidget extends StatefulWidget {
 }
 
 class _RoutesListWidgetState extends State<RoutesListWidget> {
-  final ScrollController _scrollController = ScrollController();
-
-  final GlobalKey _sliverKey = GlobalKey();
+  final _scrollController = IndexedScrollController(initialScrollOffset: 1);
 
   @override
   Widget build(BuildContext context) {
     final colorScheme = ColorScheme.of(context);
-    return Expanded(
-      child: Container(
-        clipBehavior: Clip.antiAlias,
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(10),
-          color: colorScheme.primaryContainer,
-        ),
-        child: BlocSelector<RouteInfoBloc, RouteInfoState, String>(
-          selector: (state) {
-            return state.language;
-          },
-          builder: (context, language) {
-            return BlocSelector<
-              RouteInfoBloc,
-              RouteInfoState,
-              StopProgressState?
-            >(
-              selector: (state) {
-                return state.stopProgressState;
-              },
-              builder: (context, stopProgress) {
-                WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
-                  final context = _sliverKey.currentContext;
-                  if (context == null) return;
-
-                  // final box = context.findRenderObject() as RenderBox;
-                  // final offset = box.localToGlobal(
-                  //   Offset.zero,
-                  //   ancestor: context.findRenderObject(),
-                  // );
-                  final scrollOffset = _scrollController.offset + 50;
-                  _scrollController.animateTo(
-                    scrollOffset,
-                    duration: Duration(milliseconds: 500),
-                    curve: Curves.easeInOut,
-                  );
-                });
-                if (stopProgress == null) return SizedBox();
-                final visitedStops = stopProgress.visitedStops.toList();
-                final upcomingStops = stopProgress.upcomingStops.toList();
-                return CustomScrollView(
-                  controller: _scrollController,
-                  slivers: [
-                    SliverList.builder(
-                      itemCount: visitedStops.length,
-                      itemBuilder: (context, index) {
-                        final stop = visitedStops[index];
-                        return StopListItemWidget(
-                          key: ValueKey(stop.getName(language)),
-                          stage: StopPositionStage.passed,
-                          stopName: stop.getName(language),
-                          position: stop.position,
-                        );
-                      },
-                    ),
-                    SliverToBoxAdapter(
-                      child: StopListItemWidget(
-                        key: _sliverKey,
-                        stage: stopProgress.stopInQuestion.stage,
-                        stopName: stopProgress.stopInQuestion.getName(language),
-                        position: stopProgress.stopInQuestion.position,
-                      ),
-                    ),
-                    SliverList.builder(
-                      itemCount: upcomingStops.length,
-
-                      itemBuilder: (context, index) {
-                        final stop = upcomingStops[index];
-                        return StopListItemWidget(
-                          key: ValueKey(stop.getName(language)),
-                          stage: StopPositionStage.upcoming,
-                          stopName: stop.getName(language),
-                          position: stop.position,
-                        );
-                      },
-                    ),
-                  ],
-                );
-              },
+    return BlocListener<RouteInfoBloc, RouteInfoState>(
+      listenWhen: (previous, current) {
+        return previous.stopInQuestionIndex != current.stopInQuestionIndex;
+      },
+      listener: (context, state) {
+        if (state.stopInQuestionIndex != null &&
+            state.stopInQuestionIndex! > 3) {
+          Future.delayed(Duration(milliseconds: 200), () {
+            _scrollController.animateToIndex(
+              state.stopInQuestionIndex! - 3,
+              duration: Duration(seconds: 1),
             );
-          },
+          });
+        }
+      },
+      child: Expanded(
+        child: Container(
+          clipBehavior: Clip.antiAlias,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(10),
+            color: colorScheme.primaryContainer,
+          ),
+          child: BlocSelector<RouteInfoBloc, RouteInfoState, String>(
+            selector: (state) {
+              return state.language;
+            },
+            builder: (context, language) {
+              return BlocSelector<RouteInfoBloc, RouteInfoState, List<BusStop>>(
+                selector: (state) {
+                  return state.stopList;
+                },
+                builder: (context, stopList) {
+                  if (stopList.isEmpty) return SizedBox();
+                  return IndexedListView.builder(
+                    key: ValueKey('routeBuilder'),
+                    controller: _scrollController,
+                    maxItemCount: stopList.length - 1,
+                    minItemCount: 3,
+                    itemBuilder: (context, index) {
+                      final stop = stopList[index];
+
+                      return StopListItemWidget(
+                        stage: stop.stage,
+                        stopName: stop.getName(language),
+                        position: stop.position,
+                      );
+                    },
+                  );
+                },
+              );
+            },
+          ),
         ),
       ),
     );

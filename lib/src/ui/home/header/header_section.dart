@@ -14,7 +14,8 @@ class HeaderSection extends StatelessWidget {
             child: Center(
               child: BlocSelector<RouteInfoBloc, RouteInfoState, String>(
                 selector: (state) {
-                  return state.headerTitle;
+                  if (state.stopInQuestionIndex == null) return 'N/A';
+                  return getHeader(state.stopList[state.stopInQuestionIndex!]);
                 },
                 builder: (context, headerTitle) {
                   return TextScroll(
@@ -49,13 +50,16 @@ class HeaderSection extends StatelessWidget {
                   alignment: Alignment.centerLeft,
                   child: BlocSelector<RouteInfoBloc, RouteInfoState, String>(
                     selector: (state) {
-                      return state.header;
+                      if (state.stopInQuestionIndex == null) return 'N/A';
+
+                      return state.stopList[state.stopInQuestionIndex!].getName(
+                        state.language,
+                      );
                     },
                     builder: (context, header) {
                       return TextScroll(
                         header,
                         intervalSpaces: 1.sp.toInt(),
-                        
                         pauseBetween: Duration(seconds: 2),
                         delayBefore: Duration(seconds: 2),
                         velocity: Velocity(pixelsPerSecond: Offset(40, 0)),
@@ -74,5 +78,12 @@ class HeaderSection extends StatelessWidget {
         ],
       ),
     );
+  }
+
+  String getHeader(BusStop stop) {
+    if (stop.stage == StopPositionStage.atStop) {
+      return 'Now';
+    }
+    return 'Next';
   }
 }

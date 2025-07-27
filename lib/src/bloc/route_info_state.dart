@@ -1,64 +1,47 @@
 part of 'route_info_bloc.dart';
 
 class RouteInfoState extends Equatable {
-  final Location? location;
-  final BusRoute? route;
+  final int? stopInQuestionIndex;
   final String routeName;
   final String routeId;
-  final TimeTableItem? timeTableItem;
-  final StopProgressState? stopProgressState;
-  final String headerTitle;
-  final String header;
+  final List<BusStop> stopList;
+
   final String language;
-  final int index;
 
   const RouteInfoState({
-    required this.location,
-    required this.headerTitle,
-    required this.header,
     required this.routeName,
     required this.routeId,
-    required this.index,
-    this.route,
-    this.stopProgressState,
+    required this.stopList,
+    required this.stopInQuestionIndex,
     this.language = 'en',
-    this.timeTableItem,
   });
 
   factory RouteInfoState.initial() {
     return RouteInfoState(
-      location: null,
-      headerTitle: 'N/A',
-      header: 'N/A',
       routeId: 'N/A',
       routeName: 'N/A',
-      index: 0,
+      stopInQuestionIndex: null,
+      stopList: [],
     );
   }
 
   RouteInfoState copyWith({
-    Location? location,
-    String? headerTitle,
-    String? header,
+    // String? headerTitle,
+    // String? header,
     String? routeName,
     String? routeId,
-    BusRoute? route,
-    TimeTableItem? timeTableItem,
-    StopProgressState? stopProgressState,
+    List<BusStop>? stopList,
+    int? stopInQuestionIndex,
     String? language,
-    int? index,
   }) {
     return RouteInfoState(
-      index: index ?? this.index,
-      location: location,
       routeName: routeName ?? this.routeName,
       routeId: routeId ?? this.routeId,
-      headerTitle: headerTitle ?? this.headerTitle,
-      header: header ?? this.header,
-      route: route ?? this.route,
-      stopProgressState: stopProgressState ?? this.stopProgressState,
+      // headerTitle: headerTitle ?? this.headerTitle,
+      // header: header ?? this.header,
+      stopList: stopList ?? this.stopList,
+      stopInQuestionIndex: stopInQuestionIndex ?? this.stopInQuestionIndex,
       language: language ?? this.language,
-      timeTableItem: timeTableItem ?? this.timeTableItem,
     );
   }
 
@@ -66,13 +49,10 @@ class RouteInfoState extends Equatable {
   List<Object?> get props => [
     routeName,
     routeId,
-    headerTitle,
-    header,
-    route,
-    timeTableItem,
-    stopProgressState,
+    // headerTitle,
+    // header,
+    stopList,
+    stopInQuestionIndex,
     language,
-    location,
-    index,
   ];
 }

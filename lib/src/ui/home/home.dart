@@ -1,14 +1,17 @@
-
 import 'dart:async';
-import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:indexed_list_view/indexed_list_view.dart';
+import 'package:infotainment/demo/current_location.dart';
 import 'package:infotainment/src/bloc/route_info_bloc.dart';
 import 'package:infotainment/src/const/enums.dart';
-import 'package:infotainment/src/repo/service.dart';
+import 'package:infotainment/src/model/bus_stop.dart';
+import 'package:infotainment/src/repo/bus_route_repo.dart';
+import 'package:infotainment/src/repo/timetable_repo.dart';
 import 'package:infotainment/src/service/gps.dart';
+import 'package:infotainment/src/service/route_service.dart';
 import 'package:infotainment/src/ui/widgets/stop_list_items.dart';
 
 import 'package:text_scroll/text_scroll.dart';
@@ -28,7 +31,17 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  final bloc = RouteInfoBloc();
+  final routeRepo = BusRouteRepo();
+  final timetableRepo = TimetableRepo();
+  final gpsService = GpsService(isMokeData: true);
+  late final bloc = RouteInfoBloc(
+    RouteService(
+      routeRepo: routeRepo,
+      timetableRepo: timetableRepo,
+      gpsService: gpsService,
+      isMokeData: true,
+    ),
+  );
   @override
   void initState() {
     bloc.add(RouteInfoFetch());

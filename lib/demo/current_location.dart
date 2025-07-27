@@ -1,6 +1,7 @@
 import 'package:infotainment/src/model/location.dart';
 
 class DemoLocation {
+  DemoLocation._();
   static int index = 0;
 
   static List<Location> locations = [
@@ -193,8 +194,7 @@ class DemoLocation {
     Location(latitude: 11.250214697559576, longitude: 75.78396821273381),
     Location(latitude: 11.249207086399696, longitude: 75.78422837208568),
   ];
-  static Future<Location> getCurrentLocation() async {
-    await Future.delayed(Duration(seconds: 1));
+  static Location getCurrentLocation() {
     if (index >= locations.length) {
       index = 0;
     }

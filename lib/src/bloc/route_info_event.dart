@@ -5,11 +5,6 @@ sealed class RouteInfoEvent {}
 
 class RouteInfoFetch extends RouteInfoEvent {}
 
-class RouteInfoUpdateLanguage extends RouteInfoEvent {
-  
-}
+class _RouteInfoUpdateLanguage extends RouteInfoEvent {}
 
-class RouteInfoUpdate extends RouteInfoEvent {
-  // final RouteInfoState state;
-  // RouteInfoUpdate({required this.state});
-}
+class _RouteInfoUpdate extends RouteInfoEvent {}

@@ -1,6 +1,6 @@
 
-enum StopItemPosition { first, middle, last }
-
+enum StopItemPosition  { first, middle, last }
+ 
 enum StopPositionStage {
   /// The bus has already passed this stop some time ago.
   passed,

@@ -2,24 +2,20 @@ import 'dart:async';
 import 'dart:convert';
 import 'dart:developer';
 import 'package:dart_periphery/dart_periphery.dart';
+import 'package:infotainment/demo/current_location.dart';
 import 'package:infotainment/src/model/location.dart';
-
-// class GpsData {
-//   final double? latitude;
-//   final double? longitude;
-//   final bool hasFix;
-
-//   GpsData({this.latitude, this.longitude, required this.hasFix});
-// }
 
 class GpsService {
   final String portPath;
   final Baudrate baudRate;
+  final bool isMokeData;
   Serial? _serial;
 
-  GpsService({this.portPath = '/dev/serial0', this.baudRate = Baudrate.b9600});
-
-  static final instance = GpsService();
+  GpsService({
+    this.portPath = '/dev/serial0',
+    this.baudRate = Baudrate.b9600,
+    this.isMokeData = false,
+  });
 
   Location? _currentLocation;
   Timer? _timer;
@@ -58,7 +54,10 @@ class GpsService {
     }
   }
 
-  Location? getCurrentLocation() {
+  Location? get currentLocation {
+    if (isMokeData) {
+      return DemoLocation.getCurrentLocation();
+    }
     if (_timer == null) _start();
     return _currentLocation;
   }

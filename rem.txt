@@ -1,0 +1,23 @@
+# ==========================================================
+# Template Keymap for ir-keytable
+#
+# IMPORTANT: Replace the placeholder scancodes (e.g., 0x10001)
+# with the real scancodes from your remote control.
+# Find your scancodes by running: sudo ir-keytable -t
+# ==========================================================
+
+# --- Navigation ---
+0x892 = KEY_UP          # Up Arrow
+0x8d8 = KEY_DOWN        # Down Arrow
+0x897 = KEY_LEFT        # Left Arrow
+0x89f = KEY_RIGHT       # Right Arrow
+
+# --- Playback Control ---
+0x8001 = KEY_PLAYPAUSE   # Play/Pause
+0x8003 = KEY_NEXT        # Next Track / Fast-Forward
+0x8002 = KEY_PREVIOUS    # Previous Track / Rewind
+
+# --- Volume Control ---
+0x8006 = KEY_VOLUMEUP
+0x8005 = KEY_VOLUMEDOWN
+0x801e = KEY_MUTE

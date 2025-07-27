@@ -34,15 +34,16 @@ dependencies:
   flutter:
     sdk: flutter
   flutter_bloc: ^9.1.1
-  # flutter_tts: ^4.2.3
+  indexed_list_view: ^4.0.0
   geolocator: ^14.0.2
   intl: ^0.20.2
   meta: ^1.16.0
   text_scroll: ^0.2.0
   flutter_screenutil: ^5.9.3
   flutterpi_gstreamer_video_player: ^0.1.1+1
+  video_player: 2.9.5
   audioplayers: ^5.0.0
-  dart_periphery: ^0.9.18
+  dart_periphery: ^0.9.18 #to communicate with GPS module
 
 dev_dependencies:
   flutter_lints: ^5.0.0
@@ -63,6 +64,7 @@ flutter:
     - assets/json/
     - assets/audio/
     - assets/images/
+    - assets/video/
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images
   # For details regarding adding assets from package dependencies, see

@@ -40,15 +40,6 @@ class _AdvertisementSectionState extends State<AdvertisementSection> {
                 borderRadius: BorderRadius.circular(10).h,
                 color: colorScheme.primaryContainer,
               ),
-              // child: Center(
-              //   child: BlocBuilder<RouteInfoBloc, RouteInfoState>(
-              //     builder: (context, state) {
-              //       return Text(
-              //         '${state.location != null ? state.stopProgressState?.stopInQuestion.getDistance(state.location!) : 'no location'} : ${state.stopProgressState?.stopInQuestion.location}: ${state.location} : index: ${state.index}',
-              //       );
-              //     },
-              //   ),
-              // ),
             ),
           ),
         ],
@@ -65,27 +56,36 @@ class AdVideoPlayer extends StatefulWidget {
 }
 
 class _AdVideoPlayerState extends State<AdVideoPlayer> {
-  // late VideoPlayerController _controller;
+  late VideoPlayerController _controller;
 
   @override
   void initState() {
-    // _controller =
-    //     VideoPlayerController.networkUrl(
-    //         Uri.parse(
-    //           'https://flutter.github.io/assets-for-api-docs/assets/videos/bee.mp4',
-    //         ),
-    //       )
-    //       ..initialize()
-    //       ..play().then((_) {
-    //         // Ensure the first frame is shown after the video is initialized, even before the play button has been pressed.
-    //         setState(() {});
-    //       });
+    try {
+      _controller =
+          VideoPlayerController.asset(
+              'assets/video/video.mp4',
+              videoPlayerOptions: VideoPlayerOptions(),
+            )
+            ..initialize()
+            ..play().then((_) {
+              // Ensure the first frame is shown after the video is initialized, even before the play button has been pressed.
+              setState(() {});
+            });
+      _controller.addListener(() {
+        if (_controller.value.isCompleted) _controller.play();
+      });
+    } catch (e) {
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(SnackBar(content: Text(e.toString())));
+    }
+
     super.initState();
   }
 
   @override
   void dispose() {
-    // _controller.dispose();
+    _controller.dispose();
     super.dispose();
   }
 
@@ -93,18 +93,9 @@ class _AdVideoPlayerState extends State<AdVideoPlayer> {
   Widget build(BuildContext context) {
     return AspectRatio(
       aspectRatio: 16 / 9,
-      child: Container(
-        color: Colors.white,
-        child: Center(
-          child: BlocBuilder<RouteInfoBloc, RouteInfoState>(
-            builder: (context, state) {
-              return Text(
-                '${state.location != null ? state.stopProgressState?.stopInQuestion.getDistance(state.location!) : 'no location'} : ${state.stopProgressState?.stopInQuestion.location}: ${state.location} : index: ${state.index}',
-                style: TextStyle(fontSize: 30),
-              );
-            },
-          ),
-        ),
+      child: ClipRRect(
+        borderRadius: BorderRadiusGeometry.circular(8),
+        child: VideoPlayer(_controller),
       ),
       // Image.asset('assets/images/myg.jpg', fit: BoxFit.fill),
     );
