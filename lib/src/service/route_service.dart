@@ -65,13 +65,18 @@ class RouteService {
 
     final currentLocation = gpsService.currentLocation;
 
-    if (stopInQuestionIndex == busStops.length - 1 || currentLocation == null) {
+    if (currentLocation == null) {
       return busStops;
     }
 
     BusStop stopInQuestion = busStops[stopInQuestionIndex];
 
     if (stopInQuestion.stage == StopPositionStage.atStop) {
+      if (stopInQuestionIndex == busStops.length - 1) {
+        tripStopProgress = null;
+        await initializeCurrentRoute();
+        return busStops;
+      }
       final distance = stopInQuestion.getDistance(currentLocation);
       if (distance > AppConfig.currentStopRadius) {
         busStops[stopInQuestionIndex].updateStage = StopPositionStage.passed;

@@ -41,12 +41,7 @@ class _RoutesListWidgetState extends State<RoutesListWidget> {
           listener: (context, state) {
             if (state.stopInQuestionIndex != null) {
               if (state.stopInQuestionIndex! >= 3) {
-                Future.delayed(Duration(milliseconds: 200), () {
-                  _scrollController.animateToIndex(
-                    state.stopInQuestionIndex! - 3,
-                    duration: Duration(seconds: 5),
-                  );
-                });
+                _scrollController.jumpTo(state.stopInQuestionIndex! - 3);
               } else {
                 _scrollController.jumpToIndex(0);
               }
