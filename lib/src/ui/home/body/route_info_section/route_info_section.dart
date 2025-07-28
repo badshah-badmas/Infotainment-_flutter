@@ -27,58 +27,51 @@ class _RoutesListWidgetState extends State<RoutesListWidget> {
   @override
   Widget build(BuildContext context) {
     final colorScheme = ColorScheme.of(context);
-    return BlocListener<RouteInfoBloc, RouteInfoState>(
-      listenWhen: (previous, current) {
-        return previous.stopInQuestionIndex != current.stopInQuestionIndex;
-      },
-      listener: (context, state) {
-        if (state.stopInQuestionIndex != null &&
-            state.stopInQuestionIndex! > 3) {
-          Future.delayed(Duration(milliseconds: 200), () {
-            _scrollController.animateToIndex(
-              state.stopInQuestionIndex! - 3,
-              duration: Duration(seconds: 1),
-            );
-          });
-        }
-      },
-      child: Expanded(
-        child: Container(
-          clipBehavior: Clip.antiAlias,
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(10),
-            color: colorScheme.primaryContainer,
-          ),
-          child: BlocSelector<RouteInfoBloc, RouteInfoState, String>(
-            selector: (state) {
-              return state.language;
-            },
-            builder: (context, language) {
-              return BlocSelector<RouteInfoBloc, RouteInfoState, List<BusStop>>(
-                selector: (state) {
-                  return state.stopList;
-                },
-                builder: (context, stopList) {
-                  if (stopList.isEmpty) return SizedBox();
-                  return IndexedListView.builder(
-                    key: ValueKey('routeBuilder'),
-                    controller: _scrollController,
-                    maxItemCount: stopList.length - 1,
-                    minItemCount: 3,
-                    itemBuilder: (context, index) {
-                      final stop = stopList[index];
-
-                      return StopListItemWidget(
-                        stage: stop.stage,
-                        stopName: stop.getName(language),
-                        position: stop.position,
-                      );
-                    },
+    return Expanded(
+      child: Container(
+        clipBehavior: Clip.antiAlias,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(10),
+          color: colorScheme.primaryContainer,
+        ),
+        child: BlocConsumer<RouteInfoBloc, RouteInfoState>(
+          listenWhen: (previous, current) {
+            return previous.stopInQuestionIndex != current.stopInQuestionIndex;
+          },
+          listener: (context, state) {
+            if (state.stopInQuestionIndex != null) {
+              if (state.stopInQuestionIndex! >= 3) {
+                Future.delayed(Duration(milliseconds: 200), () {
+                  _scrollController.animateToIndex(
+                    state.stopInQuestionIndex! - 3,
+                    duration: Duration(seconds: 5),
                   );
-                },
-              );
-            },
-          ),
+                });
+              } else {
+                _scrollController.jumpToIndex(0);
+              }
+            }
+          },
+          builder: (context, state) {
+            final stopList = state.stopList;
+            final language = state.language;
+            if (stopList.isEmpty) return SizedBox();
+            return IndexedListView.builder(
+              key: ValueKey('routeBuilder'),
+              controller: _scrollController,
+              maxItemCount: stopList.length - 1,
+              minItemCount: 3,
+              itemBuilder: (context, index) {
+                final stop = stopList[index];
+                return StopListItemWidget(
+                  key: ValueKey(stop.getName(language)),
+                  stage: stop.stage,
+                  stopName: stop.getName(language),
+                  position: stop.position,
+                );
+              },
+            );
+          },
         ),
       ),
     );

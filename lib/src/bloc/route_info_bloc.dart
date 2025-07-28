@@ -38,7 +38,7 @@ class RouteInfoBloc extends Bloc<RouteInfoEvent, RouteInfoState> {
     Timer.periodic(Duration(milliseconds: 2000), (timer) {
       add(_RouteInfoUpdate());
     });
-    Timer.periodic(Duration(seconds: 20), (timer) {
+    Timer.periodic(Duration(seconds: 5), (timer) {
       add(_RouteInfoUpdateLanguage());
     });
   }

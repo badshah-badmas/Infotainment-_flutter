@@ -35,9 +35,7 @@ class StopListItemWidget extends StatelessWidget {
               ],
             ),
           ),
-          Expanded(
-            child: _TextPart(key: ValueKey(stopName), stopName: stopName),
-          ),
+          Expanded(child: _TextPart(stopName: stopName)),
         ],
       ),
     );
@@ -45,7 +43,7 @@ class StopListItemWidget extends StatelessWidget {
 }
 
 class _TextPart extends StatelessWidget {
-  const _TextPart({super.key, required this.stopName});
+  const _TextPart({required this.stopName});
 
   final String stopName;
 

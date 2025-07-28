@@ -3,7 +3,6 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:indexed_list_view/indexed_list_view.dart';
 import 'package:infotainment/src/bloc/route_info_bloc.dart';
 import 'package:infotainment/src/const/enums.dart';
