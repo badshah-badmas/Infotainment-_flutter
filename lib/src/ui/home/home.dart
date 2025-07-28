@@ -3,13 +3,14 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:indexed_list_view/indexed_list_view.dart';
-import 'package:infotainment/demo/current_location.dart';
 import 'package:infotainment/src/bloc/route_info_bloc.dart';
 import 'package:infotainment/src/const/enums.dart';
 import 'package:infotainment/src/model/bus_stop.dart';
 import 'package:infotainment/src/repo/bus_route_repo.dart';
 import 'package:infotainment/src/repo/timetable_repo.dart';
+import 'package:infotainment/src/service/audio_service.dart';
 import 'package:infotainment/src/service/gps.dart';
 import 'package:infotainment/src/service/route_service.dart';
 import 'package:infotainment/src/ui/widgets/stop_list_items.dart';
@@ -34,16 +35,19 @@ class _HomeScreenState extends State<HomeScreen> {
   final routeRepo = BusRouteRepo();
   final timetableRepo = TimetableRepo();
   final gpsService = GpsService(isMokeData: true);
+  final audioService = AudioService();
   late final bloc = RouteInfoBloc(
     RouteService(
       routeRepo: routeRepo,
       timetableRepo: timetableRepo,
       gpsService: gpsService,
+      audioService: audioService,
       isMokeData: true,
     ),
   );
   @override
   void initState() {
+    audioService.initializeMusicPlayer();
     bloc.add(RouteInfoFetch());
     super.initState();
   }

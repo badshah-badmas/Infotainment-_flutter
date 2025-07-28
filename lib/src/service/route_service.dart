@@ -14,6 +14,7 @@ class RouteService {
   final BusRouteRepo routeRepo;
   final TimetableRepo timetableRepo;
   final GpsService gpsService;
+  final AudioService audioService;
   final bool isMokeData;
   TimeTableItem? currentTrip;
   BusRoute? currentRoute;
@@ -24,6 +25,7 @@ class RouteService {
     required this.routeRepo,
     required this.timetableRepo,
     required this.gpsService,
+    required this.audioService,
     this.isMokeData = false,
   });
 
@@ -53,7 +55,7 @@ class RouteService {
     return currentRoute!.stopListByDirection(currentTrip?.direction ?? '');
   }
 
-  List<BusStop> updateTripStopProgress() {
+  Future<List<BusStop>> updateTripStopProgress() async {
     if (tripStopProgress == null) {
       return _initializeTripStopProgress();
     }
@@ -84,7 +86,7 @@ class RouteService {
     if (distance <= AppConfig.currentStopRadius) {
       busStops[stopInQuestionIndex].updateStage = StopPositionStage.atStop;
     } else if (distance <= AppConfig.nextStopRadius) {
-      AudioService.instance.announce(stopInQuestion);
+      await audioService.announce(stopInQuestion);
     } else if (distance > AppConfig.maxDistanceBetweenStops) {
       tripStopProgress = null;
       return busStops;

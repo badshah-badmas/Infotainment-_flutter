@@ -196,7 +196,7 @@ class DemoLocation {
   ];
   static Location getCurrentLocation() {
     if (index >= locations.length) {
-      index = 0;
+      return locations.last;
     }
     return locations[index++];
   }

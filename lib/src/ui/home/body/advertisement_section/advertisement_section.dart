@@ -8,17 +8,8 @@ class AdvertisementSection extends StatefulWidget {
 }
 
 class _AdvertisementSectionState extends State<AdvertisementSection> {
-  // final gps = GpsService();
-
   @override
   void initState() {
-    // gps.start().then((value) {
-    //   gps.stream.listen((data) {
-    //     setState(() {
-    //       text = '${data.latitude} : ${data.longitude}';
-    //     });
-    //   });
-    // });
     super.initState();
   }
 
@@ -31,7 +22,17 @@ class _AdvertisementSectionState extends State<AdvertisementSection> {
       child: Column(
         spacing: 8,
         children: [
-          AdVideoPlayer(),
+          // AdVideoPlayer(),
+          Expanded(
+            child: Center(
+              child: Text(
+                'Hello മലയാളം हिंदी',
+                // style: TextStyle(
+                  
+                // ),
+              ),
+            ),
+          ),
           Expanded(
             child: Container(
               // height: double.maxFinite,

@@ -164,3 +164,21 @@ sudo apt install libgstreamer1.0-dev libgstreamer-plugins-base1.0-dev libgstream
 sudo fc-cache
 
 sudo apt -y install rpd-plym-splash // splash screen
+
+
+# USB
+
+sudo mkdir -p /media/usb
+
+sudo nano /etc/udev/rules.d/99-automount.rules
+
+ACTION=="add", SUBSYSTEMS=="usb", KERNEL=="sd[a-z][0-9]", \
+    RUN+="/bin/mkdir -p /media/usb-%k", \
+    RUN+="/usr/bin/systemd-mount --no-block --automount=yes --collect -o ro /dev/%k /media/usb-%k"
+
+ACTION=="remove", SUBSYSTEMS=="usb", KERNEL=="sd[a-z][0-9]", \
+    RUN+="/usr/bin/systemd-umount /media/usb-%k", \
+    RUN+="/bin/rmdir /media/usb-%k"
+
+sudo udevadm control --reload-rules
+sudo udevadm trigger

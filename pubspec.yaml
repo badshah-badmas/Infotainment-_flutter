@@ -44,6 +44,7 @@ dependencies:
   video_player: 2.9.5
   audioplayers: ^5.0.0
   dart_periphery: ^0.9.18 #to communicate with GPS module
+  google_fonts: ^6.2.1
 
 dev_dependencies:
   flutter_lints: ^5.0.0

@@ -1,26 +1,32 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 final ThemeData theme = ThemeData(
   colorScheme: colorScheme,
-  textTheme: TextTheme(
-    headlineLarge: TextStyle(
-      // fontSize: 40,
-      fontWeight: FontWeight.bold,
-      color: colorScheme.onPrimaryContainer,
-    ),
-    headlineMedium: TextStyle(
-      // fontSize: 32,
-      fontWeight: FontWeight.w600,
-      // color: colorScheme.onSurface,
-    ),
-    bodyLarge: TextStyle(fontSize: 16, color: colorScheme.onPrimaryContainer),
-    titleLarge: TextStyle(
-      // fontSize: 24,
-      fontWeight: FontWeight.w600,
-      color: colorScheme.onPrimaryContainer,
-    ),
-    titleSmall: TextStyle(color: colorScheme.onPrimaryContainer),
-    bodyMedium: TextStyle(color: colorScheme.onPrimaryContainer),
+  textTheme: GoogleFonts.robotoTextTheme().apply(
+    fontFamilyFallback: [
+       GoogleFonts.anekMalayalam().fontFamily ?? '',
+            GoogleFonts.tiroDevanagariHindi().fontFamily ?? '',
+    ]
+    //   headlineLarge: TextStyle(
+    //     // fontSize: 40,
+    //     fontWeight: FontWeight.bold,
+    //     color: colorScheme.onPrimaryContainer,
+    //   ),
+    //   headlineMedium: TextStyle(
+    //     // fontSize: 32,
+    //     fontWeight: FontWeight.w600,
+    //     // color: colorScheme.onSurface,
+    //   ),
+    //   bodyLarge: TextStyle(fontSize: 16, color: colorScheme.onPrimaryContainer),
+    //   titleLarge: TextStyle(
+    //     // fontSize: 24,
+    //     fontWeight: FontWeight.w600,
+    //     color: colorScheme.onPrimaryContainer,
+    //   ),
+    //   titleSmall: TextStyle(color: colorScheme.onPrimaryContainer),
+    //   bodyMedium: TextStyle(color: colorScheme.onPrimaryContainer),
+    // ),
   ),
   dividerTheme: DividerThemeData(color: colorScheme.primary, thickness: 4),
 );

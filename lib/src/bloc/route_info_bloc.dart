@@ -24,7 +24,7 @@ class RouteInfoBloc extends Bloc<RouteInfoEvent, RouteInfoState> {
     Emitter<RouteInfoState> emit,
   ) async {
     await service.initializeCurrentRoute();
-    final stopList = service.updateTripStopProgress();
+    final stopList = await service.updateTripStopProgress();
 
     emit(
       state.copyWith(
@@ -46,8 +46,8 @@ class RouteInfoBloc extends Bloc<RouteInfoEvent, RouteInfoState> {
   FutureOr<void> _updateRouteInfo(
     _RouteInfoUpdate event,
     Emitter<RouteInfoState> emit,
-  ) {
-    final stopList = service.updateTripStopProgress();
+  ) async {
+    final stopList = await service.updateTripStopProgress();
     emit(
       state.copyWith(
         stopList: stopList,
