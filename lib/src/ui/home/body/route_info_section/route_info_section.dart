@@ -22,51 +22,53 @@ class RoutesListWidget extends StatefulWidget {
 }
 
 class _RoutesListWidgetState extends State<RoutesListWidget> {
-  final _scrollController = IndexedScrollController(initialScrollOffset: 1);
+  final _scrollController = IndexedScrollController();
 
   @override
   Widget build(BuildContext context) {
     final colorScheme = ColorScheme.of(context);
-    return Expanded(
-      child: Container(
-        clipBehavior: Clip.antiAlias,
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(10),
-          color: colorScheme.primaryContainer,
-        ),
-        child: BlocConsumer<RouteInfoBloc, RouteInfoState>(
-          listenWhen: (previous, current) {
-            return previous.stopInQuestionIndex != current.stopInQuestionIndex;
-          },
-          listener: (context, state) {
-            if (state.stopInQuestionIndex != null) {
-              if (state.stopInQuestionIndex! >= 3) {
-                _scrollController.jumpTo(state.stopInQuestionIndex! - 3);
-              } else {
-                _scrollController.jumpToIndex(0);
-              }
-            }
-          },
-          builder: (context, state) {
-            final stopList = state.stopList;
-            final language = state.language;
-            if (stopList.isEmpty) return SizedBox();
-            return IndexedListView.builder(
-              key: ValueKey('routeBuilder'),
-              controller: _scrollController,
-              maxItemCount: stopList.length - 1,
-              minItemCount: 3,
-              itemBuilder: (context, index) {
-                final stop = stopList[index];
-                return StopListItemWidget(
-                  key: ValueKey(stop.getName(language)),
-                  stage: stop.stage,
-                  stopName: stop.getName(language),
-                  position: stop.position,
-                );
-              },
-            );
-          },
+    return BlocListener<RouteInfoBloc, RouteInfoState>(
+      listenWhen: (previous, current) {
+        return previous.stopInQuestionIndex != current.stopInQuestionIndex;
+      },
+      listener: (context, state) {
+        if (state.stopInQuestionIndex != null) {
+          if (state.stopInQuestionIndex! >= 3) {
+            _scrollController.jumpToIndex(state.stopInQuestionIndex! - 3);
+          } else {
+            _scrollController.jumpToIndex(0);
+          }
+        }
+      },
+      child: Expanded(
+        child: Container(
+          clipBehavior: Clip.antiAlias,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(10),
+            color: colorScheme.primaryContainer,
+          ),
+          child: BlocBuilder<RouteInfoBloc, RouteInfoState>(
+            builder: (context, state) {
+              final stopList = state.stopList;
+              final language = state.language;
+              if (stopList.isEmpty) return SizedBox();
+              return IndexedListView.builder(
+                key: ValueKey('routeBuilder'),
+                controller: _scrollController,
+                maxItemCount: stopList.length - 1,
+
+                itemBuilder: (context, index) {
+                  final stop = stopList[index];
+                  return StopListItemWidget(
+                    key: ValueKey(stop.getName(language)),
+                    stage: stop.stage,
+                    stopName: stop.getName(language),
+                    position: stop.position,
+                  );
+                },
+              );
+            },
+          ),
         ),
       ),
     );
